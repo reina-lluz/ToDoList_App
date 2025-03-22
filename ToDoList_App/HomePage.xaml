@@ -9,61 +9,32 @@
       Title="HomePage">
 
     <Grid>
-        <ListView ItemsSource="{Binding TaskList}" 
-                  Margin="10" 
-                  MouseDoubleClick="ListView_MouseDoubleClick"
-                  Name="TaskListView">
-            <ListView.ItemContainerStyle>
-                <Style TargetType="ListViewItem">
-                    <Setter Property="Background" Value="White"/>
-                    <Style.Triggers>
-                        <DataTrigger Binding="{Binding IsChecked}" Value="True">
-                            <Setter Property="Background" Value="LightGreen"/>
-                        </DataTrigger>
-                    </Style.Triggers>
-                </Style>
-            </ListView.ItemContainerStyle>
-
+        <ListView Name="TaskListView" ItemsSource="{Binding TaskList}" MouseDoubleClick="ListView_MouseDoubleClick">
             <ListView.View>
                 <GridView>
-                    <GridViewColumn Header="✔" Width="50">
+                    <GridViewColumn Header="Task" Width="200" DisplayMemberBinding="{Binding TaskName}" />
+                    <GridViewColumn Header="Deadline" Width="100" DisplayMemberBinding="{Binding Deadline}" />
+                    <GridViewColumn Header="Status" Width="100">
                         <GridViewColumn.CellTemplate>
                             <DataTemplate>
-                                <CheckBox IsChecked="{Binding IsChecked, Mode=TwoWay}" />
+                                <TextBlock Text="{Binding Status}" Foreground="{Binding StatusColor}" FontWeight="Bold" />
                             </DataTemplate>
                         </GridViewColumn.CellTemplate>
                     </GridViewColumn>
-
-                    <GridViewColumn Header="Task Name" Width="200">
+                    <GridViewColumn Header="Done" Width="50">
                         <GridViewColumn.CellTemplate>
                             <DataTemplate>
-                                <TextBlock Text="{Binding TaskName}" />
-                            </DataTemplate>
-                        </GridViewColumn.CellTemplate>
-                    </GridViewColumn>
-
-                    <GridViewColumn Header="Deadline" Width="150">
-                        <GridViewColumn.CellTemplate>
-                            <DataTemplate>
-                                <TextBlock Text="{Binding Deadline}" />
-                            </DataTemplate>
-                        </GridViewColumn.CellTemplate>
-                    </GridViewColumn>
-
-                    <GridViewColumn Header="Status" Width="160">
-                        <GridViewColumn.CellTemplate>
-                            <DataTemplate>
-                                <StackPanel Orientation="Horizontal">
-                                    <Ellipse Width="10" Height="10" 
-                                             Fill="{Binding StatusColor}" 
-                                             Margin="5"/>
-                                    <TextBlock Text="{Binding Status}" />
-                                </StackPanel>
+                                <CheckBox IsChecked="{Binding IsChecked, Mode=TwoWay}" Checked="CheckBox_Checked" Unchecked="CheckBox_Unchecked"/>
                             </DataTemplate>
                         </GridViewColumn.CellTemplate>
                     </GridViewColumn>
                 </GridView>
             </ListView.View>
         </ListView>
+
+        <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Margin="0,325,0,10">
+            <Button Content="Edit Task" Click="EditTask_Click" Width="100" Margin="5"/>
+            <Button Content="Delete Task" Click="DeleteTask_Click" Width="100" Margin="5"/>
+        </StackPanel>
     </Grid>
 </Page>
