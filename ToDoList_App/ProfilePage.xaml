@@ -15,7 +15,8 @@
         </Grid>
 
         <!-- User Name -->
-        <TextBlock Name="UserName" Text="John Doe" FontSize="24" FontWeight="Bold" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="23,125,0,0"/>
+        <TextBlock Name="UserName" Text="ANNA" FontSize="24" FontWeight="Bold" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="23,125,0,0"/>
+        <Button Content="LOG OUT" HorizontalAlignment="Left" Height="25" Margin="23,180,0,0" VerticalAlignment="Top" Width="202" Click="LogOut_Click" />
 
         <!-- Task Completion Progress Bar -->
     </Grid>
