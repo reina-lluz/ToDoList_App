@@ -8,10 +8,21 @@ using System.Windows.Media;
 
 namespace ToDoList_App
 {
-    public partial class HomePage : Page
+    public partial class HomePage : Page, INotifyPropertyChanged
     {
         private readonly string filePath = @"C:\Users\AMD Ryzen 3 3200G\source\repos\ToDoList_App\task.txt";
         public ObservableCollection<TaskItem> TaskList { get; set; }
+
+        private double _taskCompletionPercentage;
+        public double TaskCompletionPercentage
+        {
+            get => _taskCompletionPercentage;
+            set
+            {
+                _taskCompletionPercentage = value;
+                OnPropertyChanged(nameof(TaskCompletionPercentage));
+            }
+        }
 
         public HomePage()
         {
@@ -40,6 +51,7 @@ namespace ToDoList_App
                     }
                 }
             }
+            CalculateTaskCompletionPercentage(); // Calculate initial percentage
         }
 
         private void SaveTasks()
@@ -59,6 +71,7 @@ namespace ToDoList_App
             {
                 task.IsChecked = true;
                 SaveTasks();
+                CalculateTaskCompletionPercentage();
             }
         }
 
@@ -68,6 +81,20 @@ namespace ToDoList_App
             {
                 task.IsChecked = false;
                 SaveTasks();
+                CalculateTaskCompletionPercentage();
+            }
+        }
+
+        private void CalculateTaskCompletionPercentage()
+        {
+            if (TaskList.Count > 0)
+            {
+                var completedTasks = TaskList.Count(t => t.IsChecked);
+                TaskCompletionPercentage = (double)completedTasks / TaskList.Count * 100;
+            }
+            else
+            {
+                TaskCompletionPercentage = 0;
             }
         }
 
@@ -95,6 +122,7 @@ namespace ToDoList_App
             {
                 TaskList.Remove(selectedTask);
                 SaveTasks(); // Ensure deletion is saved
+                CalculateTaskCompletionPercentage(); // Recalculate after deletion
             }
         }
 
@@ -107,6 +135,12 @@ namespace ToDoList_App
                                 MessageBoxButton.OK,
                                 MessageBoxImage.Information);
             }
+        }
+
+        public event PropertyChangedEventHandler PropertyChanged;
+        protected virtual void OnPropertyChanged(string propertyName)
+        {
+            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
         }
     }
 }

@@ -20,7 +20,7 @@ namespace ToDoList_App
 {
     public partial class TasksPage : Page
     {
-        private string filePath = "tasks.txt"; // File to store tasks
+        private string filePath = @"C:\Users\AMD Ryzen 3 3200G\source\repos\ToDoList_App\task.txt"; // File to store tasks
 
         public TasksPage()
         {

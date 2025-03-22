@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Microsoft.Win32;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -20,6 +21,19 @@ namespace ToDoList_App
         public ProfilePage()
         {
             InitializeComponent();
+        }
+
+        // This method handles the button click for uploading the photo
+        private void OnUploadPhotoClick(object sender, RoutedEventArgs e)
+        {
+            // Open file picker dialog to select an image
+            OpenFileDialog openFileDialog = new OpenFileDialog();
+            openFileDialog.Filter = "Image Files|*.jpg;*.jpeg;*.png;*.bmp";
+            if (openFileDialog.ShowDialog() == true)
+            {
+                // Set the selected image as the profile picture
+                ProfileImage.Source = new BitmapImage(new Uri(openFileDialog.FileName));
+            }
         }
     }
 }

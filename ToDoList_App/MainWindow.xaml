@@ -15,6 +15,7 @@
                 <Button Content="🏠 Home" Background="Transparent" Height="40" BorderBrush="{x:Null}" Click="GoToHomePage"/>
                 <Button Content="📝 Tasks" Background="Transparent" Height="40" Foreground="Black" BorderBrush="{x:Null}" Click="GoToTasksPage"/>
                 <Button Content="👤 Profile" Foreground="Black" Background="Transparent" Height="40" BorderBrush="{x:Null}" Click="GoToProfilePage"/>
+                <Button Content="👤 Log Out" Foreground="Black" Background="Transparent" Height="524" BorderBrush="{x:Null}" Click="GoToProfilePage"/>
             </StackPanel>
         </Border>
 

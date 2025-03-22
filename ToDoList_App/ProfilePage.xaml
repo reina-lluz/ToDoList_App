@@ -7,8 +7,16 @@
       mc:Ignorable="d" 
       d:DesignHeight="450" d:DesignWidth="800"
       Title="ProfilePage">
+    <Grid Background="#FFF1F0E8">
+        <!-- Profile Picture -->
+        <Grid VerticalAlignment="Top" HorizontalAlignment="Left" Margin="20">
+            <Image Name="ProfileImage" Width="100" Height="100" HorizontalAlignment="Center" VerticalAlignment="Top" />
+            <Button Content="Upload Photo" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="115,115,0,0" Click="OnUploadPhotoClick" Width="90"/>
+        </Grid>
 
-    <Grid>
-        
+        <!-- User Name -->
+        <TextBlock Name="UserName" Text="John Doe" FontSize="24" FontWeight="Bold" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="23,125,0,0"/>
+
+        <!-- Task Completion Progress Bar -->
     </Grid>
 </Page>
