@@ -9,7 +9,8 @@
         ResizeMode="NoResize"
         WindowStartupLocation="CenterScreen">
     <Grid>
-
+        <!--test-->
+        
         <!-- Sidebar -->
         <Border x:Name="SidebarPanel" Background="#FFB5A493" Width="195" Height="Auto" HorizontalAlignment="Left">
             <StackPanel>
