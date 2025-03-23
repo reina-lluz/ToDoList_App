@@ -5,26 +5,44 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:ToDoList_App"
         mc:Ignorable="d"
-        Title="log_in" Height="450" Width="800">
+        Title="log_in" Height="450" Width="800"
+             ResizeMode="NoResize"
+        WindowStartupLocation="CenterScreen" >
+
     <Grid>
         <Grid.Background>
-            <ImageBrush ImageSource="/11.png"/>
+            <ImageBrush ImageSource="/Log In.png" Stretch="UniformToFill" />
+
         </Grid.Background>
 
         <Grid>
-            <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center" Width="220" Height="110">
+            <StackPanel HorizontalAlignment="Center" VerticalAlignment="Top" Width="220" Height="183" Margin="0,159,0,0">
                 <TextBlock FontSize="24" FontWeight="Bold" Margin="0,0,0,20" Height="35"/>
 
 
-                <TextBox Name="usernameTextBox" Margin="0,5,0,10" SelectionBrush="{x:Null}" Background="{x:Null}" BorderBrush="{x:Null}"/>
+                <TextBox Name="usernameTextBox" Margin="0,18,0,10" SelectionBrush="#FFAF8F6F" Background="{x:Null}" BorderBrush="{x:Null}" Height="34" Foreground="#FFF8F4E1" SelectionTextBrush="#FFF8F4E1" CaretBrush="#FF543310"/>
 
 
-                <PasswordBox Name="passwordBox" Margin="0,5,0,20" Background="{x:Null}" BorderBrush="{x:Null}" Height="34"/>
+                <PasswordBox Name="passwordBox" Margin="0,16,0,20" Background="{x:Null}" BorderBrush="{x:Null}" Height="37" Width="218" Foreground="#FFF8F4E1" SelectionTextBrush="#FFF8F4E1" SelectionBrush="#FFAF8F6F" CaretBrush="#FF543310"/>
 
 
             </StackPanel>
-            <Button  HorizontalAlignment="Left" Height="28" Margin="325,172,0,0" VerticalAlignment="Top" Width="62" Background="{x:Null}" Click="SignIn_Click" BorderBrush="#FFFFFBFB"/>
-            <Button HorizontalAlignment="Left" Height="28" Margin="401,171,0,0" VerticalAlignment="Top" Width="62" Background="{x:Null}" Click="SignUp_Click" BorderBrush="White" />
+            <Button  HorizontalAlignment="Left" Height="28" Margin="323,166,0,0" VerticalAlignment="Top" Width="62" Background="{x:Null}" Click="SignIn_Click">
+                <Button.Foreground>
+                    <ImageBrush/>
+                </Button.Foreground>
+                <Button.BorderBrush>
+                    <ImageBrush/>
+                </Button.BorderBrush>
+            </Button>
+            <Button HorizontalAlignment="Left" Height="28" Margin="405,166,0,0" VerticalAlignment="Top" Width="62" Background="{x:Null}" Click="SignUp_Click" >
+                <Button.Foreground>
+                    <ImageBrush/>
+                </Button.Foreground>
+                <Button.BorderBrush>
+                    <ImageBrush/>
+                </Button.BorderBrush>
+            </Button>
         </Grid>
     </Grid>
 </Window>

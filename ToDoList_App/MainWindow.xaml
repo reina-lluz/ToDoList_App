@@ -5,26 +5,21 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:ToDoList_App"
         mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="800">
+        Title="MainWindow" Height="450" Width="800"
+        ResizeMode="NoResize"
+        WindowStartupLocation="CenterScreen">
     <Grid>
 
-        <!--hello-->
         <!-- Sidebar -->
-        <Border x:Name="SidebarPanel" Background="#FFB5A493" Width="200" Height="Auto"
-                VerticalAlignment="Stretch" HorizontalAlignment="Left">
+        <Border x:Name="SidebarPanel" Background="#FFB5A493" Width="195" Height="Auto" HorizontalAlignment="Left">
             <StackPanel>
                 <Button Content="🏠 Home" Background="Transparent" Height="40" BorderBrush="{x:Null}" Click="GoToHomePage"/>
                 <Button Content="📝 Tasks" Background="Transparent" Height="40" Foreground="Black" BorderBrush="{x:Null}" Click="GoToTasksPage"/>
                 <Button Content="👤 Profile" Foreground="Black" Background="Transparent" Height="40" BorderBrush="{x:Null}" Click="GoToProfilePage"/>
-                <Button Content="👤 Log Out" Foreground="Black" Background="Transparent" Height="524" BorderBrush="{x:Null}" Click="GoToProfilePage"/>
+                <Button Content="👤 Log Out" Foreground="Black" Background="Transparent" Height="47" BorderBrush="{x:Null}" Click="GoToProfilePage" Margin="0,246,0,0"/>
             </StackPanel>
         </Border>
 
-        <!-- Hamburger Button -->
-        <ToggleButton x:Name="HamburgerButton" Content="☰" FontSize="20"
-                      Background="Transparent" Foreground="Black"
-                      HorizontalAlignment="Left" VerticalAlignment="Top"
-                      Margin="10,1,0,0" Click="HamburgerButton_Click" BorderBrush="{x:Null}"/>
 
         <!-- Main Content Area -->
         <Frame x:Name="MainFrame" Background="#FFF1F0E8" Margin="200,0,0,0" Foreground="Black"/>

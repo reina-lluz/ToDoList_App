@@ -26,12 +26,7 @@ namespace ToDoList_App
             TaskList = new ObservableCollection<TaskModel>();  // ✅ Initialize TaskList
         }
 
-        private void HamburgerButton_Click(object sender, RoutedEventArgs e)
-        {
-            // Toggle sidebar visibility
-            SidebarPanel.Width = isSidebarOpen ? 0 : 200;
-            isSidebarOpen = !isSidebarOpen;
-        }
+
 
         private void GoToHomePage(object sender, RoutedEventArgs e)
         {

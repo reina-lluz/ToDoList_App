@@ -11,11 +11,13 @@
   <ItemGroup>
     <None Remove="11.png" />
     <None Remove="1691222858_en-idei-club-p-study-room-aesthetic-wallpaper-dizain-pint-77.PNG" />
+    <None Remove="Log In.png" />
   </ItemGroup>
 
   <ItemGroup>
     <Resource Include="11.png" />
     <Resource Include="1691222858_en-idei-club-p-study-room-aesthetic-wallpaper-dizain-pint-77.PNG" />
+    <Resource Include="Log In.png" />
   </ItemGroup>
 
 </Project>

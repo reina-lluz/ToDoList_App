@@ -33,8 +33,16 @@
         </ListView>
 
         <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Margin="0,325,0,10">
-            <Button Content="Edit Task" Click="EditTask_Click" Width="100" Margin="5"/>
-            <Button Content="Delete Task" Click="DeleteTask_Click" Width="100" Margin="5"/>
+            <Button Content="Edit Task" Click="EditTask_Click" Width="100" Margin="5" Height="25" Foreground="#FFF8F4E1" Background="#FF72583E">
+                <Button.BorderBrush>
+                    <ImageBrush/>
+                </Button.BorderBrush>
+            </Button>
+            <Button Content="Delete Task" Click="DeleteTask_Click" Width="100" Margin="5" Height="25" Foreground="#FFF8F4E1" Background="#FF72583E">
+                <Button.BorderBrush>
+                    <ImageBrush/>
+                </Button.BorderBrush>
+            </Button>
         </StackPanel>
     </Grid>
 </Page>
