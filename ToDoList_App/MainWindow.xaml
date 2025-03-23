@@ -8,6 +8,7 @@
         Title="MainWindow" Height="450" Width="800">
     <Grid>
 
+        <!--hello-->
         <!-- Sidebar -->
         <Border x:Name="SidebarPanel" Background="#FFB5A493" Width="200" Height="Auto"
                 VerticalAlignment="Stretch" HorizontalAlignment="Left">
