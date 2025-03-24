@@ -15,7 +15,7 @@
 
         <!-- Task Name Input -->
         <Label Content="Task Name:" HorizontalAlignment="Left" Margin="50,100,0,0" VerticalAlignment="Top"/>
-        <TextBox x:Name="TaskNameInput" HorizontalAlignment="Left" Margin="150,100,0,0" VerticalAlignment="Top" Width="400" Background="#FFCCB59E" CaretBrush="#FFF8F4E1" Foreground="#FF543310" SelectionTextBrush="#FFF8F4E1" SelectionBrush="#FFF8F4E1">
+        <TextBox x:Name="TaskNameInput" HorizontalAlignment="Left" Margin="150,100,0,0" VerticalAlignment="Top" Width="400" Background="#FFCCB59E" CaretBrush="#FFF8F4E1" Foreground="#FF543310" SelectionTextBrush="#FFF8F4E1" SelectionBrush="#FFF8F4E1" Height="26">
             <TextBox.BorderBrush>
                 <ImageBrush/>
             </TextBox.BorderBrush>
@@ -24,9 +24,25 @@
         <!-- Deadline Input -->
         <Label Content="Deadline:" HorizontalAlignment="Left" Margin="50,150,0,0" VerticalAlignment="Top"/>
         <DatePicker x:Name="DeadlineInput" HorizontalAlignment="Left" Margin="150,150,0,0" VerticalAlignment="Top" Width="200" Background="#FFCCB59E" BorderBrush="#FFCCB59E" Foreground="#FF543310"/>
+        <Label Content="Priority:" HorizontalAlignment="Left" Margin="50,200,0,0" VerticalAlignment="Top"/>
+        <ComboBox x:Name="PriorityInput" HorizontalAlignment="Left" Margin="150,200,0,0" VerticalAlignment="Top" Width="150">
+            <ComboBoxItem Content="Select Priority" IsEnabled="False" IsSelected="True" Foreground="Gray"/>
+            <ComboBoxItem Content="Low"/>
+            <ComboBoxItem Content="Medium"/>
+            <ComboBoxItem Content="High"/>
+        </ComboBox>
+
+        <Label Content="Category:" HorizontalAlignment="Left" Margin="50,250,0,0" VerticalAlignment="Top"/>
+        <ComboBox x:Name="CategoryInput" HorizontalAlignment="Left" Margin="150,250,0,0" VerticalAlignment="Top" Width="150">
+            <ComboBoxItem Content="Select Category" IsEnabled="False" IsSelected="True" Foreground="Gray"/>
+            <ComboBoxItem Content="Personal"/>
+            <ComboBoxItem Content="Work"/>
+            <ComboBoxItem Content="School"/>
+            <ComboBoxItem Content="Others"/>
+        </ComboBox>
 
         <!-- Add Task Button -->
-        <Button Content="Add Task" HorizontalAlignment="Left" Margin="150,200,0,0" VerticalAlignment="Top" Width="100"
+        <Button Content="Add Task" HorizontalAlignment="Left" Margin="150,306,0,0" VerticalAlignment="Top" Width="100"
                 Click="AddTask_Click" Background="#FF72583E" Foreground="#FFF8F4E1">
             <Button.BorderBrush>
                 <ImageBrush/>

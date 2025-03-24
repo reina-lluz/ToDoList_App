@@ -11,12 +11,25 @@
   <ItemGroup>
     <None Remove="11.png" />
     <None Remove="1691222858_en-idei-club-p-study-room-aesthetic-wallpaper-dizain-pint-77.PNG" />
+    <None Remove="HOME PAGE.png" />
+    <None Remove="Images\HOME PAGE.png" />
+    <None Remove="Images\Log In real.png" />
+    <None Remove="Images\Log In.png" />
+    <None Remove="Log In real.png" />
     <None Remove="Log In.png" />
   </ItemGroup>
 
   <ItemGroup>
     <Resource Include="11.png" />
     <Resource Include="1691222858_en-idei-club-p-study-room-aesthetic-wallpaper-dizain-pint-77.PNG" />
+    <Resource Include="HOME PAGE.png" />
+    <Resource Include="Images\HOME PAGE.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Images\Log In real.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Log In real.png" />
     <Resource Include="Log In.png" />
   </ItemGroup>
 

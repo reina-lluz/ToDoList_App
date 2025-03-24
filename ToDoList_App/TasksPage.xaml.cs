@@ -20,7 +20,7 @@ namespace ToDoList_App
 {
     public partial class TasksPage : Page
     {
-        private string filePath = @"C:\Users\AMD Ryzen 3 3200G\source\repos\ToDoList_App\task.txt"; // File to store tasks
+        private string filePath = @"C:\Users\Diane\source\repos\ToDoList_App1\tasks.txt"; // File to store tasks
 
         public TasksPage()
         {
@@ -33,13 +33,17 @@ namespace ToDoList_App
             string taskName = TaskNameInput.Text;
             string deadline = DeadlineInput.SelectedDate?.ToString("yyyy-MM-dd") ?? "No deadline";
 
+            string priority = (PriorityInput.SelectedItem as ComboBoxItem)?.Content.ToString() ?? "Low";
+            string category = (CategoryInput.SelectedItem as ComboBoxItem)?.Content.ToString() ?? "Personal";
+
             if (string.IsNullOrWhiteSpace(taskName))
             {
                 MessageBox.Show("Task Name cannot be empty.", "Error", MessageBoxButton.OK, MessageBoxImage.Warning);
                 return;
             }
 
-            string newTask = $"{taskName}|{deadline}|False"; // Format: TaskName|Deadline|IsChecked
+            // Updated task format with priority and category
+            string newTask = $"{taskName}|{deadline}|{priority}|{category}|False";
 
             try
             {
@@ -50,18 +54,28 @@ namespace ToDoList_App
                 // Add the task to MainWindow's TaskList
                 if (Application.Current.MainWindow is MainWindow main)
                 {
-                    main.TaskList.Add(new TaskModel { TaskName = taskName, Deadline = deadline, IsChecked = false });
+                    main.TaskList.Add(new TaskItem
+                    {
+                        TaskName = taskName,
+                        Deadline = deadline,
+                        Priority = priority,
+                        Category = category,
+                        IsChecked = false
+                    });
                 }
 
-                // Clear inputs
+                // Clear inputs after adding
                 TaskNameInput.Text = "";
                 DeadlineInput.SelectedDate = null;
+                PriorityInput.SelectedIndex = 0;
+                CategoryInput.SelectedIndex = 0;
             }
             catch (Exception ex)
             {
                 MessageBox.Show($"Error saving task: {ex.Message}", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
             }
         }
+
 
         private void LoadTasks()
         {
@@ -73,16 +87,25 @@ namespace ToDoList_App
                     foreach (string line in lines)
                     {
                         string[] parts = line.Split('|');
-                        if (parts.Length == 3)
+                        if (parts.Length == 5)  // Check for correct task format
                         {
                             string taskName = parts[0];
                             string deadline = parts[1];
-                            bool isChecked = bool.Parse(parts[2]);
+                            string priority = parts[2];
+                            string category = parts[3];
+                            bool isChecked = bool.Parse(parts[4]);
 
-                            // Get reference to MainWindow and add task
+                            // Add task to MainWindow's TaskList
                             if (Application.Current.MainWindow is MainWindow main)
                             {
-                                main.TaskList.Add(new TaskModel { TaskName = taskName, Deadline = deadline, IsChecked = isChecked });
+                                main.TaskList.Add(new TaskItem
+                                {
+                                    TaskName = taskName,
+                                    Deadline = deadline,
+                                    Priority = priority,
+                                    Category = category,
+                                    IsChecked = isChecked
+                                });
                             }
                         }
                     }
@@ -93,5 +116,6 @@ namespace ToDoList_App
                 MessageBox.Show($"Error loading tasks: {ex.Message}", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
             }
         }
+
     }
 }

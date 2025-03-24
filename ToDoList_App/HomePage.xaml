@@ -9,7 +9,12 @@
       Title="HomePage">
 
     <Grid>
-        <ListView Name="TaskListView" ItemsSource="{Binding TaskList}" MouseDoubleClick="ListView_MouseDoubleClick">
+
+
+        <ListView x:Name="TaskListView" ItemsSource="{Binding TaskList}" MouseDoubleClick="ListView_MouseDoubleClick">
+            <ListView.Background>
+                <ImageBrush ImageSource="/HOME PAGE.png" Stretch="UniformToFill"/>
+            </ListView.Background>
             <ListView.View>
                 <GridView>
                     <GridViewColumn Header="Task" Width="200" DisplayMemberBinding="{Binding TaskName}" />
@@ -28,9 +33,13 @@
                             </DataTemplate>
                         </GridViewColumn.CellTemplate>
                     </GridViewColumn>
+                    <GridViewColumn Header="Priority" Width="100" DisplayMemberBinding="{Binding Priority}" />
+                    <GridViewColumn Header="Category" Width="100" DisplayMemberBinding="{Binding Category}" />
                 </GridView>
             </ListView.View>
         </ListView>
+
+        
 
         <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Margin="0,325,0,10">
             <Button Content="Edit Task" Click="EditTask_Click" Width="100" Margin="5" Height="25" Foreground="#FFF8F4E1" Background="#FF72583E">

@@ -4,14 +4,15 @@ using System.IO;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
-using System.Windows.Media;
 
 namespace ToDoList_App
 {
     public partial class HomePage : Page, INotifyPropertyChanged
     {
-        private readonly string filePath = @"C:\Users\AMD Ryzen 3 3200G\source\repos\ToDoList_App\task.txt";
-        public ObservableCollection<TaskItem> TaskList { get; set; }
+        private readonly string filePath = @"C:\Users\Diane\source\repos\ToDoList_App1\tasks.txt";
+        public ObservableCollection<TaskItem> TaskList { get; set; } = new ObservableCollection<TaskItem>();
+
+
 
         private double _taskCompletionPercentage;
         public double TaskCompletionPercentage
@@ -27,41 +28,61 @@ namespace ToDoList_App
         public HomePage()
         {
             InitializeComponent();
-            TaskList = new ObservableCollection<TaskItem>();
-            LoadTasks();
+            TaskList = (Application.Current.MainWindow as MainWindow)?.TaskList ?? new ObservableCollection<TaskItem>();
+
             DataContext = this;
+            LoadTasks();
+            CalculateTaskCompletionPercentage();
         }
 
         private void LoadTasks()
         {
-            if (File.Exists(filePath))
+            try
             {
-                string[] lines = File.ReadAllLines(filePath);
-                foreach (string line in lines)
+                if (File.Exists(filePath))
                 {
-                    string[] parts = line.Split('|');
-                    if (parts.Length == 3 && bool.TryParse(parts[2], out bool isChecked))
+                    string[] lines = File.ReadAllLines(filePath);
+                    TaskList.Clear();
+
+                    foreach (string line in lines)
                     {
-                        TaskList.Add(new TaskItem
+                        string[] parts = line.Split('|');
+                        if (parts.Length == 5 && bool.TryParse(parts[4], out bool isChecked))
                         {
-                            TaskName = parts[0],
-                            Deadline = parts[1],
-                            IsChecked = isChecked
-                        });
+                            TaskList.Add(new TaskItem
+                            {
+                                TaskName = parts[0],
+                                Deadline = parts[1],
+                                Priority = parts[2],
+                                Category = parts[3],
+                                IsChecked = isChecked
+                            });
+                        }
                     }
+                    CalculateTaskCompletionPercentage();
                 }
             }
-            CalculateTaskCompletionPercentage(); // Calculate initial percentage
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Error loading tasks: {ex.Message}", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+            }
         }
 
         private void SaveTasks()
         {
-            using (StreamWriter writer = new StreamWriter(filePath, false))
+            try
             {
-                foreach (var task in TaskList)
+                using (StreamWriter writer = new StreamWriter(filePath, false))
                 {
-                    writer.WriteLine($"{task.TaskName}|{task.Deadline}|{task.IsChecked}");
+                    foreach (var task in TaskList)
+                    {
+                        writer.WriteLine($"{task.TaskName}|{task.Deadline}|{task.Priority}|{task.Category}|{task.IsChecked}");
+                    }
                 }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Error saving tasks: {ex.Message}", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
             }
         }
 
@@ -98,31 +119,13 @@ namespace ToDoList_App
             }
         }
 
-        private void EditTask_Click(object sender, RoutedEventArgs e)
-        {
-            if (TaskListView.SelectedItem is TaskItem selectedTask)
-            {
-                string newName = Microsoft.VisualBasic.Interaction.InputBox(
-                    "Enter new task name:", "Edit Task", selectedTask.TaskName);
-                string newDeadline = Microsoft.VisualBasic.Interaction.InputBox(
-                    "Enter new deadline:", "Edit Deadline", selectedTask.Deadline);
-
-                if (!string.IsNullOrWhiteSpace(newName))
-                    selectedTask.TaskName = newName;
-                if (!string.IsNullOrWhiteSpace(newDeadline))
-                    selectedTask.Deadline = newDeadline;
-
-                SaveTasks();
-            }
-        }
-
         private void DeleteTask_Click(object sender, RoutedEventArgs e)
         {
             if (TaskListView.SelectedItem is TaskItem selectedTask)
             {
                 TaskList.Remove(selectedTask);
-                SaveTasks(); // Ensure deletion is saved
-                CalculateTaskCompletionPercentage(); // Recalculate after deletion
+                SaveTasks();
+                CalculateTaskCompletionPercentage();
             }
         }
 
@@ -130,14 +133,48 @@ namespace ToDoList_App
         {
             if (TaskListView.SelectedItem is TaskItem selectedTask)
             {
-                MessageBox.Show($"Task: {selectedTask.TaskName}\nDeadline: {selectedTask.Deadline}\nStatus: {selectedTask.Status}",
-                                "Task Details",
-                                MessageBoxButton.OK,
-                                MessageBoxImage.Information);
+                MessageBox.Show(
+                    $"Task: {selectedTask.TaskName}\nDeadline: {selectedTask.Deadline}\nPriority: {selectedTask.Priority}\nCategory: {selectedTask.Category}\nStatus: {selectedTask.Status}",
+                    "Task Details",
+                    MessageBoxButton.OK,
+                    MessageBoxImage.Information
+                );
+            }
+        }
+
+        private void EditTask_Click(object sender, RoutedEventArgs e)
+        {
+            if (TaskListView.SelectedItem is TaskItem selectedTask)
+            {
+                string newName = Microsoft.VisualBasic.Interaction.InputBox(
+                    "Enter new task name:", "Edit Task", selectedTask.TaskName);
+                string newDeadline = Microsoft.VisualBasic.Interaction.InputBox(
+                    "Enter new deadline (yyyy-MM-dd):", "Edit Deadline", selectedTask.Deadline);
+                string newPriority = Microsoft.VisualBasic.Interaction.InputBox(
+                    "Enter new priority (Low, Medium, High):", "Edit Priority", selectedTask.Priority);
+                string newCategory = Microsoft.VisualBasic.Interaction.InputBox(
+                    "Enter new category (Personal, Work, School, Others):", "Edit Category", selectedTask.Category);
+
+                if (!string.IsNullOrWhiteSpace(newName))
+                    selectedTask.TaskName = newName;
+                if (!string.IsNullOrWhiteSpace(newDeadline))
+                    selectedTask.Deadline = newDeadline;
+                if (!string.IsNullOrWhiteSpace(newPriority))
+                    selectedTask.Priority = newPriority;
+                if (!string.IsNullOrWhiteSpace(newCategory))
+                    selectedTask.Category = newCategory;
+
+                SaveTasks();
+                MessageBox.Show("Task updated successfully!", "Success", MessageBoxButton.OK, MessageBoxImage.Information);
+            }
+            else
+            {
+                MessageBox.Show("Please select a task to edit.", "No Task Selected", MessageBoxButton.OK, MessageBoxImage.Warning);
             }
         }
 
         public event PropertyChangedEventHandler PropertyChanged;
+
         protected virtual void OnPropertyChanged(string propertyName)
         {
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));

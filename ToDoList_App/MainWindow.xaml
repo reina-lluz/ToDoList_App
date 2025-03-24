@@ -16,8 +16,8 @@
             <StackPanel>
                 <Button Content="🏠 Home" Background="Transparent" Height="40" BorderBrush="{x:Null}" Click="GoToHomePage"/>
                 <Button Content="📝 Tasks" Background="Transparent" Height="40" Foreground="Black" BorderBrush="{x:Null}" Click="GoToTasksPage"/>
-                <Button Content="👤 Profile" Foreground="Black" Background="Transparent" Height="40" BorderBrush="{x:Null}" Click="GoToProfilePage"/>
-                <Button Content="👤 Log Out" Foreground="Black" Background="Transparent" Height="47" BorderBrush="{x:Null}" Click="GoToProfilePage" Margin="0,246,0,0"/>
+                <Button Content="👤 Streak Page" Foreground="Black" Background="Transparent" Height="40" BorderBrush="{x:Null}" Click="GoToProfilePage"/>
+                <Button Content="👤 Log Out" Foreground="Black" Background="Transparent" Height="47" BorderBrush="{x:Null}" Click="LogOut_Click" Margin="0,246,0,0"/>
             </StackPanel>
         </Border>
 

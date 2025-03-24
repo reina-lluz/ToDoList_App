@@ -15,7 +15,7 @@ namespace ToDoList_App
 {
     public partial class MainWindow : Window
     {
-        public ObservableCollection<TaskModel> TaskList { get; set; }  // ✅ Fix: Add TaskList
+        public ObservableCollection<TaskItem> TaskList { get; set; }  // ✅ Fix: Add TaskList
 
         private bool isSidebarOpen = false; // Sidebar starts CLOSED
 
@@ -23,7 +23,8 @@ namespace ToDoList_App
         {
             InitializeComponent();
             MainFrame.Navigate(new HomePage()); // Default page
-            TaskList = new ObservableCollection<TaskModel>();  // ✅ Initialize TaskList
+            TaskList = new ObservableCollection<TaskItem>();
+            // ✅ Initialize TaskList
         }
 
 
@@ -40,7 +41,18 @@ namespace ToDoList_App
 
         private void GoToProfilePage(object sender, RoutedEventArgs e)
         {
-            MainFrame.Navigate(new ProfilePage());
+            MainFrame.Navigate(new StreakPage());
         }
+        private void LogOut_Click(object sender, RoutedEventArgs e)
+        {
+            // Open the existing log_in window
+            log_in loginWindow = new log_in(); // ✅ Use 'log_in' instead of 'LoginWindow'
+            loginWindow.Show();
+
+            // Close the current MainWindow
+            this.Close();
+        }
+
+
     }
 }
