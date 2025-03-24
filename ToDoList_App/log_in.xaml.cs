@@ -21,49 +21,11 @@ namespace ToDoList_App
             InitializeComponent();
         }
 
-        // Sign In Logic
-        private void SignIn_Click(object sender, RoutedEventArgs e)
+        private void Launch_Click(object sender, RoutedEventArgs e)
         {
-            string username = usernameTextBox.Text;
-            string password = passwordBox.Password;
-
-            if (string.IsNullOrEmpty(username) || string.IsNullOrEmpty(password))
-            {
-                MessageBox.Show("Please enter both username and password.", "Input Error", MessageBoxButton.OK, MessageBoxImage.Error);
-                return;
-            }
-
-            // Validation logic for credentials
-            if (username == "anna" && password == "ppl1")
-            {
-                MainWindow homePageAnna = new MainWindow();
-                homePageAnna.Show();
-                this.Close();
-            }
-            else if (username == "brian" && password == "ppl2")
-            {
-                WindowBrian homePageBrian = new WindowBrian();
-                homePageBrian.Show();
-                this.Close();
-            }
-            else if (username == "claire" && password == "ppl3")
-            {
-                WindowClaire homePageClaire = new WindowClaire();
-                homePageClaire.Show();
-                this.Close();
-            }
-            else
-            {
-                MessageBox.Show("Incorrect username or password.", "Login Failed", MessageBoxButton.OK, MessageBoxImage.Error);
-            }
-        }
-
-        // Sign Up Logic
-        private void SignUp_Click(object sender, RoutedEventArgs e)
-        {
-            SignUpWindow signUpWindow = new SignUpWindow();
-            signUpWindow.Show();
-            this.Close(); // Close the login window
+            MainWindow mainWindow = new MainWindow();
+            mainWindow.Show();
+            this.Close();
         }
     }
 }
