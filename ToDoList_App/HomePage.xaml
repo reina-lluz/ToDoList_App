@@ -8,13 +8,9 @@
       d:DesignHeight="450" d:DesignWidth="800"
       Title="HomePage">
 
-    <Grid>
+    <Grid Background="#FFF1F0E8">
 
-
-        <ListView x:Name="TaskListView" ItemsSource="{Binding TaskList}" MouseDoubleClick="ListView_MouseDoubleClick">
-            <ListView.Background>
-                <ImageBrush ImageSource="/HOME PAGE.png" Stretch="UniformToFill"/>
-            </ListView.Background>
+        <ListView x:Name="TaskListView" ItemsSource="{Binding TaskList}" MouseDoubleClick="ListView_MouseDoubleClick" Background="#FFF1F0E8">
             <ListView.View>
                 <GridView>
                     <GridViewColumn Header="Task" Width="200" DisplayMemberBinding="{Binding TaskName}" />

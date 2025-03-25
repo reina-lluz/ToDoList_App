@@ -71,8 +71,8 @@
         </Grid.Background>
 
 
-        <Button Style="{DynamicResource RoundedButtonStyle}" Content="" Width="248" Height="102"
-                HorizontalAlignment="Center" VerticalAlignment="Center"
-                Click="Launch_Click" Background="{x:Null}" BorderBrush="{x:Null}" Foreground="{x:Null}" Cursor="Hand"/>
+        <Button Style="{DynamicResource RoundedButtonStyle}" Content="" Width="190" Height="89"
+                HorizontalAlignment="Center" VerticalAlignment="Top"
+                Click="Launch_Click" Background="{x:Null}" BorderBrush="{x:Null}" Foreground="{x:Null}" Cursor="Hand" Margin="0,174,0,0"/>
     </Grid>
 </Window>
