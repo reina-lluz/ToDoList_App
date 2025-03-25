@@ -9,10 +9,8 @@ namespace ToDoList_App
 {
     public partial class HomePage : Page, INotifyPropertyChanged
     {
-        private readonly string filePath = @"C:\Users\Diane\source\repos\ToDoList_App1\tasks.txt";
+        private readonly string filePath = @"C:\Users\LEO\source\repos\ToDoList_App\tasks.txt";
         public ObservableCollection<TaskItem> TaskList { get; set; } = new ObservableCollection<TaskItem>();
-
-
 
         private double _taskCompletionPercentage;
         public double TaskCompletionPercentage
@@ -93,6 +91,12 @@ namespace ToDoList_App
                 task.IsChecked = true;
                 SaveTasks();
                 CalculateTaskCompletionPercentage();
+
+                if (Application.Current.MainWindow is MainWindow main)
+                {
+                    main.TotalTasksDone++;
+                    main.UpdateTotalTasksDonePage();
+                }
             }
         }
 
@@ -103,8 +107,15 @@ namespace ToDoList_App
                 task.IsChecked = false;
                 SaveTasks();
                 CalculateTaskCompletionPercentage();
+
+                if (Application.Current.MainWindow is MainWindow main)
+                {
+                    main.TotalTasksDone = Math.Max(0, main.TotalTasksDone - 1);
+                    main.UpdateTotalTasksDonePage();
+                }
             }
         }
+
 
         private void CalculateTaskCompletionPercentage()
         {

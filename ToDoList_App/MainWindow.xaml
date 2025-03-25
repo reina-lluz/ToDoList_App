@@ -23,7 +23,8 @@
 
 
         <!-- Main Content Area -->
-        <Frame x:Name="MainFrame" Background="#FFF1F0E8" Margin="200,0,0,0" Foreground="Black"/>
+        <Frame x:Name="MainFrame" Background="#FFF1F0E8" Margin="200,0,0,0" Foreground="Black" NavigationUIVisibility="Hidden"/>
+
 
     </Grid>
 </Window>

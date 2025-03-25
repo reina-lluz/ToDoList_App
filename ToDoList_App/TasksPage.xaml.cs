@@ -20,7 +20,7 @@ namespace ToDoList_App
 {
     public partial class TasksPage : Page
     {
-        private string filePath = @"C:\Users\Diane\source\repos\ToDoList_App1\tasks.txt"; // File to store tasks
+        private string filePath = @"C:\Users\LEO\source\repos\ToDoList_App\tasks.txt"; // File to store tasks
 
         public TasksPage()
         {
@@ -116,6 +116,22 @@ namespace ToDoList_App
                 MessageBox.Show($"Error loading tasks: {ex.Message}", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
             }
         }
+
+        private void TaskCheckBox_Checked(object sender, RoutedEventArgs e)
+        {
+            if (sender is CheckBox checkBox && checkBox.DataContext is TaskItem task)
+            {
+                task.IsChecked = true;
+
+                // Update MainWindow’s total completed tasks count
+                if (Application.Current.MainWindow is MainWindow main)
+                {
+                    main.TotalTasksDone++;
+                }
+
+            }
+        }
+
 
     }
 }
